@@ -104,9 +104,8 @@ std::map<std::string, Client*> Channel::getNonOperators() const {
 
 std::string Channel::getChannelClientsList() const {
 	std::string clientsList;
-	for (std::map<std::string, Client*>::const_iterator it = _clients.begin(); it != _clients.end(); it++) {
+	for (std::map<std::string, Client*>::const_iterator it = _clients.begin(); it != _clients.end(); it++)
 		clientsList += it->first + " ";
-	}
 	for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); it++) {
 		clientsList += '@';
 		clientsList += it->first + " ";
@@ -115,11 +114,9 @@ std::string Channel::getChannelClientsList() const {
 }
 
 bool Channel::isInvited(const std::string userName) const {
-	for (std::vector<std::string>::const_iterator it = _inviteList.begin(); it != _inviteList.end(); ++it) {
-		if (*it == userName) {
+	for (std::vector<std::string>::const_iterator it = _inviteList.begin(); it != _inviteList.end(); ++it)
+		if (*it == userName)
 			return true;
-		}
-	}
 	return false;
 }
 
@@ -182,14 +179,12 @@ void Channel::demoteFromOperator(const std::string userName) {
 
 void Channel::listClients() const {
 	std::cout << "List of Clients:\n";
-	for (std::map<std::string, Client*>::const_iterator it = _clients.begin(); it != _clients.end(); it++) {
+	for (std::map<std::string, Client*>::const_iterator it = _clients.begin(); it != _clients.end(); it++)
 		std::cout << it->second->getUserName() << std::endl;
-	}
 }
 
 void Channel::listOperators() const {
 	std::cout << "List of Operators:\n";
-	for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); it++) {
+	for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); it++)
 		std::cout << it->second->getUserName() << std::endl;
-	}
 }
