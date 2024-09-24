@@ -1,6 +1,6 @@
 #include "Client.hpp"
 
-Client::Client() {}
+Client::Client() : _nickname(""), _clientname(""), _password("") {}
 
 Client::~Client() {}
 
