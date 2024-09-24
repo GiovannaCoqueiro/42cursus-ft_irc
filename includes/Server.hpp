@@ -40,9 +40,9 @@ class Server //-> class for server
 		void						createChannel(std::string channelName);
 		void						deleteChannel(std::string channelName);
 
-		std::vector<std::string>	identifyCommand(std::string string, int fd);
-		void						parseCommand(std::string& string, int userFD);
-		void						unknownCommand(std::string command, int userFD);
+		void						identifyCommand(std::string& string, int fd);
+		std::vector<std::string>	parseCommand(std::string string);
+		void						unknownCommand(std::string command, int fd);
 };
 
 #endif
