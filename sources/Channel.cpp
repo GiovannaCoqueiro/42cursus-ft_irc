@@ -21,15 +21,15 @@ void Channel::initModes(std::map<std::string, bool>& modes) {
 	modes["l"] = false;
 }
 
-void Channel::setName(const std::string& name) {
+void Channel::setName(const std::string name) {
 	this->_name = name;
 }
 
-void Channel::setTopic(const std::string& topic) {
+void Channel::setTopic(const std::string topic) {
 	_topic = topic;
 }
 
-void Channel::setPassword(std::string& password) {
+void Channel::setPassword(std::string password) {
 	_password = password;
 }
 
@@ -132,7 +132,7 @@ bool Channel::isOnChannel(const std::string clientname) const {
 }
 
 void Channel::addClient(Client* Client) {
-	_clients.insert(std::make_pair(Client->getClientname(), Client));
+	_clients.insert(std::make_pair(Client->getNickname(), Client));
 	increaseClientCount();
 }
 
@@ -180,11 +180,11 @@ void Channel::demoteFromOperator(const std::string clientname) {
 void Channel::listClients() const {
 	std::cout << "List of Clients:\n";
 	for (std::map<std::string, Client*>::const_iterator it = _clients.begin(); it != _clients.end(); it++)
-		std::cout << it->second->getClientname() << std::endl;
+		std::cout << it->second->getNickname() << std::endl;
 }
 
 void Channel::listOperators() const {
 	std::cout << "List of Operators:\n";
 	for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); it++)
-		std::cout << it->second->getClientname() << std::endl;
+		std::cout << it->second->getNickname() << std::endl;
 }

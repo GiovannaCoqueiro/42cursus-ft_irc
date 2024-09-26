@@ -1,7 +1,5 @@
 #include "Server.hpp"
 
-#include "Server.hpp"
-
 Server::Server() {_SerSocketFd = -1;}
 		
 Server::~Server() {}
@@ -158,6 +156,13 @@ Client* Server::getClientByFD(int fd) {
 	return NULL;
 }
 
+Client* Server::getClientByNick(std::string nickName) {
+	for (size_t i = 0; i < _clients.size(); i++)
+		if (_clients[i].getNickname() == nickName)
+			return &_clients[i];
+	return NULL;
+}
+
 Channel* Server::getChannel(const std::string& channelName) {
     for (std::vector<Channel>::iterator it = _channels.begin(); it != _channels.end(); ++it) {
         if (it->getName() == channelName) {
@@ -205,7 +210,7 @@ std::vector<std::string> splitstr(std::string string) {
 void Server::identifyCommand(std::string& string, int fd) {
 	std::vector<std::string> splittedStr = splitstr(string);
 	Client* client = Server::getClientByFD(fd);
-	std::string requests[] = {    comando    }; //aqui entra nossa cadeia de comandos possiveis, exemplo {"KICK", "JOIN"}
+	std::string requests[] = {"mode"}; //aqui entra nossa cadeia de comandos possiveis, exemplo {"KICK", "JOIN"}
 
 	do {
 		int i = 0;
@@ -214,7 +219,7 @@ void Server::identifyCommand(std::string& string, int fd) {
 		std::cout << "client: " << fd << std::endl;
 
 		//loop que vai identificar o comando
-		for (; i < XXXX; i++) //substituir XXXX pelo numero de comandos totais descritos acima
+		for (; i < 1; i++) //substituir XXXX pelo numero de comandos totais descritos acima
 			if(command == requests[i])
 				break;
 
@@ -228,16 +233,7 @@ void Server::identifyCommand(std::string& string, int fd) {
 		//join(parseCommand(parsedCommand), ...); break;
 		switch (i) {
 			case 0:
-				
-				break;
-			case 1:
-				
-				break;
-			case 2:
-				
-				break;
-			case 3:
-				
+				mode(parseCommand(parsedCommand), fd);
 				break;
 			default:
 				unknownCommand(command, fd);

@@ -9,7 +9,7 @@ LIBS = ./includes
 OBJ_DIR = objects/
 
 RM = rm -f
-FILES = main.cpp Server.cpp Channel.cpp Client.cpp
+FILES = main.cpp Server.cpp Channel.cpp Client.cpp mode.cpp
 
 OBJS = $(FILES:.cpp=.o)
 
